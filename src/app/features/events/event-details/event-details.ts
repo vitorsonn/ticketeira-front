@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EventService } from '../../../services/event-service';
 import { EventResponse, SectorResponse } from '../../../models/event.model';
-import { PaymentMethod } from '../../../payment-method/payment-method';
+import { PaymentMethod } from '../../payments/payment-method/payment-method';
 
 @Component({
   selector: 'app-event-details',

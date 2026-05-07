@@ -10,27 +10,33 @@ import { EventList } from './features/events/event-list/event-list';
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
 import { EventDetails } from './features/events/event-details/event-details';
-import { PaymentSuccess } from './payment-success/payment-success';
+import { PaymentSuccess } from './features/payments/payment-success/payment-success';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
   },
-
-  { path: 'home', component: Home, canActivate: [authGuard] },
-
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'auth', // rota padrão
+    redirectTo: 'auth',
+  },
+  {
+    path: 'home',
+    component: Home,
+    canActivate: [authGuard]
   },
 
-    //client
   {
     path: 'events',
     component: EventList,
     canActivate: [authGuard],
+  },
+  {
+    path: 'events/:id',
+    component: EventDetails,
+    canActivate: [authGuard]
   },
 
   {
@@ -38,24 +44,29 @@ const routes: Routes = [
     component: MyTickets,
     canActivate: [authGuard],
   },
-
   {
     path: 'tickets/purchase',
     component: TicketPurchase,
     canActivate: [authGuard],
   },
+  {
+    path: 'payment-success',
+    component: PaymentSuccess,
+    canActivate: [authGuard],
+  },
 
-  //admin
+  {
+    path: 'admin/events',
+    component: AdminEventsList,
+    canActivate: [authGuard, adminGuard]
+  },
+  {
+    path: 'admin/events/:id/edit',
+    component: AdminEventsForm,
+    canActivate: [authGuard, adminGuard]
+  },
 
-{ path: 'admin/events', component: AdminEventsList, canActivate: [authGuard, adminGuard] },
-{ path: 'admin/events/:id/edit', component: AdminEventsForm, canActivate: [authGuard, adminGuard] },
-
-
-{path: 'events/:id', component: EventDetails},
-
-{path: 'sucesso', component: PaymentSuccess}
-
-
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

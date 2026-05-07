@@ -1,0 +1,53 @@
+<div class="bg-[#1a1a1d] p-6 rounded-2xl border border-gray-800 shadow-2xl w-full max-w-md mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-white text-lg font-bold flex items-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 text-indigo-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04m18.508 7.751A11.942 11.942 0 0112 21.5c-2.213 0-4.304-.597-6.102-1.641a11.955 11.955 0 01-3.427-4.46L19 7"
+        />
+      </svg>
+      Pagamento Seguro
+    </h3>
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
+      alt="Stripe"
+      class="h-5 opacity-50"
+    />
+  </div>
+
+  <div id="payment-element" class="min-h-[250px] mb-6">
+    <div class="animate-pulse space-y-4">
+      <div class="h-10 bg-gray-800 rounded-lg w-full"></div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="h-10 bg-gray-800 rounded-lg w-full"></div>
+        <div class="h-10 bg-gray-800 rounded-lg w-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="payment-message"
+    class="hidden text-red-400 text-sm mb-4 p-3 bg-red-400/10 rounded-lg border border-red-400/20"
+  ></div>
+
+  <button
+    (click)="confirmarPagamento()"
+    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-indigo-500/20 active:scale-95 flex items-center justify-center gap-2"
+  >
+    <span>Finalizar Pagamento</span>
+    <span class="bg-indigo-500/30 px-2 py-1 rounded text-xs"> R$ {{ amount.toFixed(2) }} </span>
+  </button>
+
+  <p class="text-[10px] text-gray-500 text-center mt-4 uppercase tracking-widest">
+    Powered by Stripe • Transação Criptografada
+  </p>
+</div>

@@ -8,23 +8,27 @@ import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purcha
 import { MyTickets } from './features/tickets/my-tickets/my-tickets';
 import { AuthComponent } from './features/auth/auth-component/auth-component';
 import { RouterModule } from '@angular/router';
-import { PaymentSuccess } from './payment-success/payment-success';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Importe o HTTP_INTERCEPTORS
+import { AuthInterceptor } from './interceptors/auth.interceptor'; // Importe seu interceptor
 
 @NgModule({
-    declarations: [App],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        AuthComponent,
-        Layout,
-        Home,
-        TicketPurchase,
-        MyTickets,
-        RouterModule
-    ],
-    providers: [
-        provideBrowserGlobalErrorListeners(),
-    ],
-    bootstrap: [App]
+  declarations: [App],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthComponent,
+    Layout,
+    Home,
+    TicketPurchase,
+    MyTickets,
+    RouterModule,
+    HttpClientModule,
+  ],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}
