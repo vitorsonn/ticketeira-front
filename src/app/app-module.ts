@@ -4,8 +4,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Layout } from './layout/layout';
 import { Home } from './features/home/home';
-import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
-import { MyTickets } from './features/tickets/my-tickets/my-tickets';
+import { MyTicketsComponent } from './features/tickets/my-tickets/my-tickets';
 import { AuthComponent } from './features/auth/auth-component/auth-component';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Importe o HTTP_INTERCEPTORS
@@ -19,8 +18,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor'; // Importe se
     AuthComponent,
     Layout,
     Home,
-    TicketPurchase,
-    MyTickets,
+    MyTicketsComponent,
     RouterModule,
     HttpClientModule,
   ],

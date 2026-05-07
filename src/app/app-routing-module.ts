@@ -7,10 +7,9 @@ import { Home } from './features/home/home';
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
 import { EventList } from './features/events/event-list/event-list';
-import { MyTickets } from './features/tickets/my-tickets/my-tickets';
-import { TicketPurchase } from './features/tickets/ticket-purchase/ticket-purchase';
 import { EventDetails } from './features/events/event-details/event-details';
 import { PaymentSuccess } from './features/payments/payment-success/payment-success';
+import { MyTicketsComponent } from './features/tickets/my-tickets/my-tickets';
 
 const routes: Routes = [
   {
@@ -41,14 +40,10 @@ const routes: Routes = [
 
   {
     path: 'my-tickets',
-    component: MyTickets,
+    component: MyTicketsComponent,
     canActivate: [authGuard],
   },
-  {
-    path: 'tickets/purchase',
-    component: TicketPurchase,
-    canActivate: [authGuard],
-  },
+
   {
     path: 'payment-success',
     component: PaymentSuccess,
