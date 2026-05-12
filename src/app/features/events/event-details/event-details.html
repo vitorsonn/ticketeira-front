@@ -100,7 +100,7 @@
         </svg>
       </button>
 
-      <app-payment-method [amount]="selectedSector()?.preco || 0" >
+      <app-payment-method [amount]="selectedSector()?.preco || 0" [sectorId]="selectedSector()?.id || 0">
 
       </app-payment-method>
 

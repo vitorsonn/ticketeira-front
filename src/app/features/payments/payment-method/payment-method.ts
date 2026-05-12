@@ -18,6 +18,7 @@ export class PaymentMethod implements OnInit {
   elements: StripeElements | null = null;
   cardElement: any;
   @Input() amount: number = 0;
+  @Input() sectorId: number = 0;
 
   ticketResult = signal<TicketResponse | null>(null);
   pagamentoConcluido = signal(false);
@@ -38,10 +39,12 @@ async ngOnInit() {
   async confirmarPagamento() {
     if (!this.stripe || !this.elements) return;
 
+
+
     const { error, paymentIntent } = await this.stripe.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        return_url: 'http://localhost:4200/payment-success',
+        return_url: `http://localhost:4200/payment-success?sectorId=${this.sectorId}`,
       },
       redirect: 'if_required',
     });
@@ -52,7 +55,10 @@ async ngOnInit() {
     }
 
     if (paymentIntent && paymentIntent.status === 'succeeded') {
-    this.stripeService.confirmPayment(paymentIntent.id).subscribe({
+
+    console.log(`Pagamento aprovado! Gerando ticket para o setor: ${this.sectorId}`);
+
+    this.stripeService.confirmPayment(paymentIntent.id, this.sectorId).subscribe({
       next: (res) => {
         this.ticketResult.set(res);
         this.pagamentoConcluido.set(true);

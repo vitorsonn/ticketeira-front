@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Defina uma interface para o TicketResponse se ainda não tiver
@@ -19,7 +19,9 @@ export class StripeService {
     return this.http.post(this.apiUrl, { amount }, { responseType: 'text' });
   }
 
-  confirmPayment(id: string): Observable<TicketResponse> {
-    return this.http.get<TicketResponse>(`${this.apiUrl}/confirm/${id}`);
+  confirmPayment(id: string, sectorId: number): Observable<TicketResponse> {
+    const params = new HttpParams().set('sectorId', sectorId.toString());
+
+    return this.http.get<TicketResponse>(`${this.apiUrl}/confirm/${id}`, { params });
   }
 }
