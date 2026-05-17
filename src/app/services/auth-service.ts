@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { AuthResponse } from '../models/auth.model';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { AuthResponse } from '../models/auth.model';
 export class AuthService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = 'http://localhost:8080/users'
+  private readonly API_URL = `${environment.apiUrl}/users`
   private router = inject(Router)
 
   login(credentials: any){

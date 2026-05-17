@@ -44,7 +44,7 @@ async ngOnInit() {
     const { error, paymentIntent } = await this.stripe.confirmPayment({
       elements: this.elements,
       confirmParams: {
-        return_url: `http://localhost:4200/payment-success?sectorId=${this.sectorId}`,
+        return_url: `${window.location.origin}/payment-success?sectorId=${this.sectorId}`,
       },
       redirect: 'if_required',
     });
@@ -75,4 +75,3 @@ async ngOnInit() {
   }
 
 }
-

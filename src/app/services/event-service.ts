@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventRequest, EventResponse } from '../models/event.model';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class EventService {
 
   private http = inject(HttpClient)
-  private readonly API_URL = 'http://localhost:8080/events'
+  private readonly API_URL = `${environment.apiUrl}/events`
 
   cadastrar(evento: EventRequest){
     const token = localStorage.getItem('token')
